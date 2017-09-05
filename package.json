@@ -1,0 +1,35 @@
+{
+  "name": "jira-smart-commit",
+  "version": "1.0.0",
+  "description": "A githook script that transforms commit messages to JIRA smart commits based on branch names",
+  "author": "Jesse Dobbelaere <jesse@dobbelae.re>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha index.test",
+    "release": "with-package git commit -am pkg.version && with-package git tag pkg.version && git push && npm publish && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessedobbelaere/jira-smart-commit.git"
+  },
+  "homepage": "https://github.com/jessedobbelaere/jira-smart-commit#readme",
+  "bugs": {
+    "url": "https://github.com/jessedobbelaere/jira-smart-commit/issues"
+  },
+  "keywords": [
+    "git",
+    "jira",
+    "smart commit",
+    "husky",
+    "git hook"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "3.5.0",
+    "proxyquire": "1.8.0",
+    "sinon": "3.2.1",
+    "with-package": "0.2.0"
+  }
+}
