@@ -59,14 +59,16 @@ const jiraTag = process.argv[2];
 const tagMatcher = new RegExp(`^${jiraTag}-\\d+`, "i");
 const commitMsgFile = process.env.GIT_PARAMS;
 const commitMsg = fs.readFileSync(commitMsgFile, { encoding: "utf-8" });
-const commitMsgTitle = commitMsg.split("\n")[0];
 const branchName = getBranchName();
 const issueTag = getIssueTagFromBranchName(branchName);
+const rawCommitMsgTitle = commitMsg.split("\n")[0];
 
-if (issueTag && isInvalidMessage(commitMsgTitle)) {
+if (issueTag && isInvalidMessage(rawCommitMsgTitle)) {
     // Add the JIRA issue tag to commit message title
+    const ticketTag = issueTag.toUpperCase();
+    const commitMsgTitle = rawCommitMsgTitle.replace(ticketTag, "").trim();
     const messageLines = commitMsg.split("\n");
-    messageLines[0] = `${issueTag.toUpperCase()} ${commitMsgTitle}`;
+    messageLines[0] = `${ticketTag} ${commitMsgTitle}`;
     fs.writeFileSync(commitMsgFile, messageLines.join("\n"), { encoding: "utf-8" });
 } else {
     fs.writeFileSync(commitMsgFile, commitMsg, { encoding: "utf-8" });
