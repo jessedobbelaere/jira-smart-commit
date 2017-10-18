@@ -1,6 +1,6 @@
 {
   "name": "jira-smart-commit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A githook script that transforms commit messages to JIRA smart commits based on branch names",
   "author": "Jesse Dobbelaere <jesse@dobbelae.re>",
   "license": "MIT",
@@ -27,6 +27,9 @@
     "husky",
     "git hook"
   ],
+  "bin": {
+    "jira-smart-commit": "./index.js"
+  },
   "dependencies": {},
   "devDependencies": {
     "chai": "4.1.2",
