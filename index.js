@@ -68,7 +68,7 @@ if (issueTag && isInvalidMessage(rawCommitMsgTitle)) {
     const ticketTag = issueTag.toUpperCase();
     const commitMsgTitle = rawCommitMsgTitle.replace(ticketTag, "").trim();
     const messageLines = commitMsg.split("\n");
-    messageLines[0] = `${ticketTag} ${commitMsgTitle}`;
+    messageLines[0] = `[${ticketTag}] ${commitMsgTitle}`;
     fs.writeFileSync(commitMsgFile, messageLines.join("\n"), { encoding: "utf-8" });
 } else {
     fs.writeFileSync(commitMsgFile, commitMsg, { encoding: "utf-8" });
