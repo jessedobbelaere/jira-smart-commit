@@ -56,7 +56,7 @@ const getIssueTagFromBranchName = (branchName) => {
 };
 
 const jiraTag = process.argv[2];
-const tagMatcher = new RegExp(`^${jiraTag}-\\d+`, "i");
+const tagMatcher = new RegExp(`${jiraTag}-\\d+`, "i");
 const commitMsgFile = process.env.GIT_PARAMS;
 const commitMsg = fs.readFileSync(commitMsgFile, { encoding: "utf-8" });
 const branchName = getBranchName();
