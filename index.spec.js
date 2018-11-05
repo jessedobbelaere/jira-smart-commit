@@ -8,6 +8,14 @@ describe('index.js', () => {
         expect(executeScriptMock("SPAN", "SPAN-1-proof-of-concept", "Initial commit✨")).to.equal("SPAN-1 Initial commit✨");
         expect(executeScriptMock("PROJECT", "PROJECT-3-githook-test", "Add support for githooks")).to.equal("PROJECT-3 Add support for githooks");
         expect(executeScriptMock("TAG", "TAG-5032-add-readme", "Add readme to project")).to.equal("TAG-5032 Add readme to project");
+
+        process.env.TAG_MATCHER = "^[^/]+/(SPAN-[0-9]+)";
+        process.env.TAG_MATCH_INDEX = "1";
+        process.env.DEBUG = "true";
+        expect(executeScriptMock(undefined, "feature/SPAN-1234/init", "Initial commit")).to.equal('SPAN-1234 Initial commit');
+        delete process.env.TAG_MATCHER;
+        delete process.env.TAG_MATCH_INDEX;
+        delete process.env.DEBUG;
     });
 
     it('should not add a prefix again to my already prefixed commit message', () => {
