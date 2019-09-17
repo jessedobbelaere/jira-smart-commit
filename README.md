@@ -1,8 +1,10 @@
 # JIRA Smart Commits
 [![Stable Version](https://img.shields.io/npm/v/jira-smart-commit.svg)](https://www.npmjs.com/package/jira-smart-commit)
 [![Build Status](https://travis-ci.org/jessedobbelaere/jira-smart-commit.svg?branch=master)](https://travis-ci.org/jessedobbelaere/jira-smart-commit)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jessedobbelaere/fork-cms-webpack-boilerplate)](https://dependabot.com)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Downloads](https://img.shields.io/npm/dt/jira-smart-commit.svg)](https://www.npmjs.com/package/jira-smart-commit)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
 
 A Node.js git hook script to prefix commits automatically with the JIRA ticket, based on a branch name.
 
