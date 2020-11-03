@@ -34,9 +34,8 @@ const isInvalidMessage = (commitMessage) => {
  */
 const getBranchName = () => {
     const branchName = fetchBranchNameFromGit();
-    if (["master", "develop"].includes(branchName)) {
-        console.error(`Hold your horses! You cannot commit directly to '${branchName}'. Please set up a PR to 'master' from GitHub and merge from there`);
-        process.exit(1);
+    if (["master", "main", "develop"].includes(branchName)) {
+        console.warn(`WARNING: Committing directly to ${branchName} is probably not a good idea. Consider making a PR.`);
     }
     return branchName;
 };
