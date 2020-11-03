@@ -1,6 +1,7 @@
-# JIRA Smart Commits
-[![Stable Version](https://img.shields.io/npm/v/jira-smart-commit.svg)](https://www.npmjs.com/package/jira-smart-commit)
-[![Build Status](https://travis-ci.org/jessedobbelaere/jira-smart-commit.svg?branch=master)](https://travis-ci.org/jessedobbelaere/jira-smart-commit)
+# JIRA Smart Commit
+
+![tests](https://github.com/jessedobbelaere/jira-smart-commit/workflows/run-tests/badge.svg)
+[![GitHub release](https://img.shields.io/github/release/jessedobbelaere/jira-smart-commit.svg)](https://github.com/jessedobbelaere/jira-smart-commit/releases/latest)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jessedobbelaere/fork-cms-webpack-boilerplate)](https://dependabot.com)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Downloads](https://img.shields.io/npm/dt/jira-smart-commit.svg)](https://www.npmjs.com/package/jira-smart-commit)
@@ -11,7 +12,8 @@ A Node.js git hook script to prefix commits automatically with the JIRA ticket, 
 ## Usage
 
 ### Installation
-1. Install [Husky](https://www.npmjs.com/package/husky) in your project to configure Git hooks easily
+
+1. Install [Husky](https://www.npmjs.com/package/husky) in your project to configure Git hooks easily.
 
 ```bash
 npm install --save-dev husky
@@ -28,29 +30,27 @@ npm install --save-dev jira-smart-commit
 ```json
     "husky": {
         "hooks": {
-            "commit-msg": "jira-smart-commit SPAN",
+            "commit-msg": "jira-smart-commit YOUR_JIRA_ISSUE_KEY",
             "pre-commit": "lint-staged"
         }
     },
 ```
-    
-or environment variables 
 
-  - TAG_MATCHER - regular expression
-  - TAG_MATCH_INDEX - match index
-  - DEBUG - if true will console log some data about branch, matches array etc
+Alternatively: use a regex to detect the Jira `ISSUE_KEY` in your branch.
 
-example: if your branches have feature/SPAN-1234/some-description template
+- `TAG_MATCHER` - regular expression
+- `TAG_MATCH_INDEX` - match index
+
+Example: if your branch names looke like `feature/JRA-1234/some-description` template
 
 ```
-"commit-msg": "TAG_MATCHER=\"^[^/]+/(SPAN-[0-9]+)\" TAG_MATCH_INDEX=1 jira-smart-commit"
+"commit-msg": "TAG_MATCHER=\"^[^/]+/(JRA-[0-9]+)\" TAG_MATCH_INDEX=1 jira-smart-commit"
 ```
-    
-    
+
 4. Do your git commits like usual. If the branch was prefixed with a JIRA tag, your commit message will get prefixed with
-the same tag.
+   the same tag.
 
 ```
-Branch: TAG-411-husky-git-hooks
-Commit message: "Add git hooks to project" → "TAG-411 Add git hooks to project"
+Branch: JRA-411-husky-git-hooks
+Commit message: "Add git hooks to project" → "JRA-411 Add git hooks to project"
 ```
