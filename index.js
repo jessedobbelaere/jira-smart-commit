@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
+import fs from "fs";
+import childProcess from "child_process";
 
 /**
  * If commit message title:
@@ -11,11 +12,12 @@ const fs = require("fs");
  * then prepend the JIRA issue tag to the commit message.
  * E.g My awesome commit -> TAG-123 My awesome commit
  */
-
-if (!process.argv[2] && !process.env.TAG_MATCHER ) {
-    console.error("Please run this script with the JIRA ticket prefix as CLI argument " +
-      "(e.g. node smart-commit-msg.js SPAN) or pass regular expression as envirement variable " +
-      "(e.g. TAG_MATCHER=\\\"SPAN-[0-9]+\\\" node smart-commit-msg.js)");
+if (!process.argv[2] && !process.env.TAG_MATCHER) {
+    console.error(
+        "Please run this script with the JIRA ticket prefix as CLI argument " +
+            "(e.g. node smart-commit-msg.js SPAN) or pass regular expression as envirement variable " +
+            '(e.g. TAG_MATCHER=\\"SPAN-[0-9]+\\" node smart-commit-msg.js)',
+    );
     process.exit(1);
 }
 
@@ -30,21 +32,10 @@ const isInvalidMessage = (commitMessage) => {
 };
 
 /**
- * @returns {string}
- */
-const getBranchName = () => {
-    const branchName = fetchBranchNameFromGit();
-    if (["master", "main", "develop"].includes(branchName)) {
-        console.warn(`WARNING: Committing directly to ${branchName} is probably not a good idea. Consider making a PR.`);
-    }
-    return branchName;
-};
-
-/**
  * @returns {String}
  */
 const fetchBranchNameFromGit = () => {
-    return require("child_process").execSync("git rev-parse --abbrev-ref HEAD", { encoding: "utf-8" }).split("\n")[0]
+    return childProcess.execSync("git rev-parse --abbrev-ref HEAD", { encoding: "utf-8" }).split("\n")[0];
 };
 
 /**
@@ -54,17 +45,19 @@ const fetchBranchNameFromGit = () => {
 const getIssueTagFromBranchName = (branchName) => {
     const matched = branchName.match(tagMatcher);
     const index = process.env.TAG_MATCH_INDEX ? Number(process.env.TAG_MATCH_INDEX) : 0;
-    if (process.env.DEBUG === 'true') {
-        console.log({branchName, tagMatcher, index, matched});
+    if (process.env.DEBUG === "true") {
+        console.log({ branchName, tagMatcher, index, matched });
     }
     return matched && matched[index];
 };
 
 const jiraTag = process.argv[2];
-const tagMatcher = process.env.TAG_MATCHER ? new RegExp(process.env.TAG_MATCHER, "i") : new RegExp(`^${jiraTag}-\\d+`, "i");
+const tagMatcher = process.env.TAG_MATCHER
+    ? new RegExp(process.env.TAG_MATCHER, "i")
+    : new RegExp(`^${jiraTag}-\\d+`, "i");
 const commitMsgFile = process.env.GIT_PARAMS || process.env.HUSKY_GIT_PARAMS;
 const commitMsg = fs.readFileSync(commitMsgFile, { encoding: "utf-8" });
-const branchName = getBranchName();
+const branchName = fetchBranchNameFromGit();
 const issueTag = getIssueTagFromBranchName(branchName);
 const rawCommitMsgTitle = commitMsg.split("\n")[0];
 
