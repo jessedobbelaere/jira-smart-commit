@@ -35,7 +35,7 @@ const isInvalidMessage = (commitMessage) => {
  * @returns {String}
  */
 const fetchBranchNameFromGit = () => {
-    return childProcess.execSync("git rev-parse --abbrev-ref HEAD", { encoding: "utf-8" }).split("\n")[0];
+    return childProcess.execSync("git branch --show-current", { encoding: "utf-8" }).split("\n")[0];
 };
 
 /**
