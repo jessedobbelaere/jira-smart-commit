@@ -55,7 +55,7 @@ const jiraTag = process.argv[2];
 const tagMatcher = process.env.TAG_MATCHER
     ? new RegExp(process.env.TAG_MATCHER, "i")
     : new RegExp(`^${jiraTag}-\\d+`, "i");
-const commitMsgFile = process.env.GIT_PARAMS || process.env.HUSKY_GIT_PARAMS;
+const commitMsgFile = process.env.GIT_PARAMS || process.env.HUSKY_GIT_PARAMS || ".git/COMMIT_EDITMSG";
 const commitMsg = fs.readFileSync(commitMsgFile, { encoding: "utf-8" });
 const branchName = fetchBranchNameFromGit();
 const issueTag = getIssueTagFromBranchName(branchName);
