@@ -1,36 +1,36 @@
 {
-  "name": "jira-smart-commit",
-  "version": "1.1.2",
-  "description": "A githook script that transforms commit messages to JIRA smart commits based on branch names",
-  "author": "Jesse Dobbelaere <jesse@dobbelae.re>",
-  "license": "MIT",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "vitest"
-  },
-  "engines": {
-    "node": ">=6.4.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jessedobbelaere/jira-smart-commit.git"
-  },
-  "homepage": "https://github.com/jessedobbelaere/jira-smart-commit#readme",
-  "bugs": {
-    "url": "https://github.com/jessedobbelaere/jira-smart-commit/issues"
-  },
-  "keywords": [
-    "git",
-    "jira",
-    "smart commit",
-    "husky",
-    "git hook"
-  ],
-  "bin": {
-    "jira-smart-commit": "index.js"
-  },
-  "devDependencies": {
-    "vitest": "^2.1.8"
-  }
+    "name": "jira-smart-commit",
+    "version": "1.1.2",
+    "description": "A githook script that transforms commit messages to JIRA smart commits based on branch names",
+    "author": "Jesse Dobbelaere <jesse@dobbelae.re>",
+    "license": "MIT",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "vitest"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jessedobbelaere/jira-smart-commit.git"
+    },
+    "homepage": "https://github.com/jessedobbelaere/jira-smart-commit#readme",
+    "bugs": {
+        "url": "https://github.com/jessedobbelaere/jira-smart-commit/issues"
+    },
+    "keywords": [
+        "git",
+        "jira",
+        "smart commit",
+        "husky",
+        "git hook"
+    ],
+    "bin": {
+        "jira-smart-commit": "index.js"
+    },
+    "devDependencies": {
+        "vitest": "^2.1.8"
+    }
 }

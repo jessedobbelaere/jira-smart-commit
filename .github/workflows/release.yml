@@ -18,14 +18,16 @@ jobs:
               with:
                   ref: "master"
                   fetch-depth: 0
-            - uses: oleksiyrudenko/gha-git-credentials@v1
+            - uses: oleksiyrudenko/gha-git-credentials@v2-latest
               with:
                   token: "${{ secrets.GITHUB_TOKEN }}"
             - name: Use Node.js
-              uses: actions/setup-node@v2-beta
+              uses: actions/setup-node@v4
               with:
                   node-version: 22
+                  registry-url: https://registry.npmjs.org
             - name: Release version
-              run: npx -p @release-it/bumper@2.0.0 -p release-it@14.2.1 release-it --verbose --increment ${{ github.event.inputs.releaseVersion }}
+              run: npx -p @release-it/bumper@6.0.1 -p auto-changelog -p release-it@17.11.0 release-it --verbose --increment ${{ github.event.inputs.releaseVersion }}
               env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
                   GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
