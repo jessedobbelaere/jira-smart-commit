@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.1.2](https://github.com/jessedobbelaere/jira-smart-commit/compare/1.1.1...1.1.2)
+## [1.2.0](https://github.com/jessedobbelaere/jira-smart-commit/compare/1.1.2...1.2.0)
+
+- Bump dependencies + support husky v9 [`#73`](https://github.com/jessedobbelaere/jira-smart-commit/pull/73)
+- Fix release-it script [`63a4feb`](https://github.com/jessedobbelaere/jira-smart-commit/commit/63a4feb62538fdde856620f25897231144398e99)
+
+## [1.1.2](https://github.com/jessedobbelaere/jira-smart-commit/compare/1.1.1...1.1.2) (2020-11-03)
 
 - Display warning when trying to commit to master, main or develop [`#41`](https://github.com/jessedobbelaere/jira-smart-commit/pull/41)
 - Bump mocha from 6.2.2 to 7.1.2 [`#25`](https://github.com/jessedobbelaere/jira-smart-commit/pull/25)
